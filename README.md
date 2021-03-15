@@ -3,4 +3,4 @@ Click [here](https://github.com/maizzuu/ot-harjoitustyo/blob/master/laskarit/vii
 Click [here](https://github.com/maizzuu/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt) for gitlog.txt!
 **HELLO**  
 *HEllo*  
-:)
+:))))))))))))))))))))
