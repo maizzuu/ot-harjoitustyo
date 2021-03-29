@@ -17,4 +17,5 @@ Application can be used to log ones incomes and expenses to track monthly spendi
   - transportation
   - restaurants and culture
   - other
-- 
+
+
