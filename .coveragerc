@@ -1,0 +1,3 @@
+[run]
+source = src
+omit = /Users/maijapajumaa1/Library/Caches/**
