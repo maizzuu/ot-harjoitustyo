@@ -1,18 +1,13 @@
 import unittest
 from month import Month
+from user import User
 
 class TestMonth(unittest.TestCase):
     def setUp(self):
-        self.m = Month("June", "2020")
+        u = User("testname", "password")
+        self.m = Month(u, "June", "2021", "")
 
     def test_creating_month_works(self):
         self.assertEqual(self.m.month, "June")
-        self.assertEqual(self.m.year, "2020")
-        self.assertEqual(self.m.spending, {
-            "food": 0,
-            "living": 0,
-            "hobbies": 0,
-            "transportation": 0,
-            "culture": 0,
-            "other": 0
-        })
+        self.assertEqual(self.m.year, "2021")
+        
