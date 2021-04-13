@@ -110,7 +110,7 @@ class TrackApp:
             return False
         num = False
         for character in password:
-            if character not in ascii_letters:
+            if character not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ":
                 if character not in "0123456789":
                     return False
             if character in "0123456789":
