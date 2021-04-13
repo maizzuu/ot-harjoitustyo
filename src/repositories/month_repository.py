@@ -1,5 +1,5 @@
-from entities.month import Month
-from database_connection import get_database_connection
+from month_copy import Month
+from database_connection_copy import get_database_connection
 
 def get_month_by_row(row):
     username = row['username']
