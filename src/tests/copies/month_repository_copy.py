@@ -34,15 +34,6 @@ class MonthRepository:
 
         return list(map(get_month_by_row, rows))
 
-    def find_by_username_and_month_and_year(self, username, month, year):
-        cursor = self._connection.cursor()
-
-        cursor.execute('select * from months where username = ? and month = ? and year = ?', (username, month, year))
-
-        row = cursor.fetchone()
-
-        return get_month_by_row(row)
-
     def create(self, month):
         cursor = self._connection.cursor()
 
@@ -54,13 +45,6 @@ class MonthRepository:
         self._connection.commit()
 
         return month
-
-    def spend(self, month, category, amount):
-        cursor = self._connection.cursor()
-
-        cursor.execute('update months set ? = ? + ? where username = ? and month = ? and year = ?', (category, category, amount, month.username, month.month, month.year))
-
-        self._connection.commit()
 
     def delete_all(self):
         cursor = self._connection.cursor()

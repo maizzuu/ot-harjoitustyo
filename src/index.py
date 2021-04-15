@@ -1,15 +1,16 @@
-from repositories.user_repository import UserRepository
-from repositories.month_repository import MonthRepository
-from database_connection_copy import get_database_connection
-from user_copy import User
+from repositories.user_repository import user_repository
+from repositories.month_repository import month_repository
+from copies.user_copy import User
+from copies.month_copy import Month
 
 login_commands = {"0": "exit", "1": "log in", "2": "create account"}
 commands = {"0": "exit", "1": "log expenses", "2": "view previous spending"}
         
 class TrackApp:
     def __init__(self):
-        self.user_repo = UserRepository(get_database_connection())
-        self.month_repo = MonthRepository(get_database_connection())
+        self.user_repo = user_repository
+        self.month_repo = month_repository
+        self.username = None
 
     def start(self):
         print("TrackApp")
@@ -34,8 +35,7 @@ class TrackApp:
         elif command == "0":
             return False
         elif command == "1":
-            # TODO log expenses
-            pass
+            self.log_expenses()
         elif command == "2":
             # TODO view spending
             pass
@@ -84,6 +84,7 @@ class TrackApp:
             return "EXIT"
 
         print("Login succesfull")
+        self.username = username
         return True
 
     def login_instructions(self):
@@ -118,6 +119,33 @@ class TrackApp:
         if not num:
             return False
         return True
+
+    def log_expenses(self):
+        print("Log expenses:")
+        while True:
+            print("To log to a preexisting month, insert 1")
+            print("To add new month, insert 2")
+            command = self.ask_for_command()
+            if command == "1":
+                break
+            if command == "2":
+                break
+        year = input("Year:")
+        month = input("Month (written):")
+        month = month[0].upper()+month[1:]
+        if command == "2":
+            self.month_repo.create(Month(self.username, month, year, 0, 0, 0, 0, 0, 0))
+            add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year)
+            print(add)
+        elif command == "1":
+            add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year)
+            if not add:
+                print() # TODO wrong month
+        category = input("Category: ")
+        category = category.lower()
+        amount = input("Amount: ")
+        self.month_repo.spend(add, category, amount)
+        print(self.month_repo.find_by_username_and_month_and_year(self.username, month, year))
 
 if __name__ == "__main__":
     ta = TrackApp()
