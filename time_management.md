@@ -8,4 +8,5 @@ date | hours | what i did
 9.4. | 1 | creating tasks + planning
 12.4. | 3 | creating repositories and database
 13.4. | 4 | creating text UI, logging in, tests
-= | 12 | 
+15.4 | 3.5 | creating tests, updating index.py
+= | 15.5 | 
