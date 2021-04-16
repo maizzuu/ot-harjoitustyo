@@ -11,4 +11,7 @@ class Month:
         self.other = other
         
     def __str__(self):
-        return f"{self.month}, {self.year}\nFood: {self.food}\nLiving: {self.living}\nHobbies: {self.hobbies}\nTransportation: {self.transportation}\nCulture: {self.culture}\nOther: {self.other}" 
+        if self.username[-1] == "s":
+            return f"{self.username}' {self.month}, {self.year}\nFood: {self.food}\nLiving: {self.living}\nHobbies: {self.hobbies}\nTransportation: {self.transportation}\nCulture: {self.culture}\nOther: {self.other}"
+        else:
+            return f"{self.username}'s {self.month}, {self.year}\nFood: {self.food}\nLiving: {self.living}\nHobbies: {self.hobbies}\nTransportation: {self.transportation}\nCulture: {self.culture}\nOther: {self.other}" 

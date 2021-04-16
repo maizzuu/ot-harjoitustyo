@@ -58,7 +58,18 @@ class MonthRepository:
     def spend(self, month, category, amount):
         cursor = self._connection.cursor()
 
-        cursor.execute('update months set ? = ? + ? where username = ? and month = ? and year = ?', (category, category, amount, month.username, month.month, month.year))
+        if category == "food":
+            cursor.execute('update months set food = ? + ? where username = ? and month = ? and year = ?', (category, amount, month.username, month.month, month.year))
+        elif category == "living":
+            cursor.execute('update months set living = ? + ? where username = ? and month = ? and year = ?', (category, amount, month.username, month.month, month.year))
+        elif category == "hobbies":
+            cursor.execute('update months set hobbies = ? + ? where username = ? and month = ? and year = ?', (category, amount, month.username, month.month, month.year))
+        elif category == "transportation":
+            cursor.execute('update months set transportation = ? + ? where username = ? and month = ? and year = ?', (category, amount, month.username, month.month, month.year))
+        elif category == "culture":
+            cursor.execute('update months set culture = ? + ? where username = ? and month = ? and year = ?', (category, amount, month.username, month.month, month.year))
+        else:
+            cursor.execute('update months set other = ? + ? where username = ? and month = ? and year = ?', (category, amount, month.username, month.month, month.year))
 
         self._connection.commit()
 

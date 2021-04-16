@@ -34,7 +34,7 @@ class TrackApp:
             self.instructions()
         elif command == "0":
             return False
-        elif command == "1":
+        elif command == "1": # log spending
             self.log_expenses()
         elif command == "2":
             # TODO view spending
@@ -128,24 +128,76 @@ class TrackApp:
             command = self.ask_for_command()
             if command == "1":
                 break
-            if command == "2":
+            elif command == "2":
                 break
-        year = input("Year:")
-        month = input("Month (written):")
-        month = month[0].upper()+month[1:]
+            else:
+                print("Wrong command.")
+
+        if command == "1":
+            while True:
+                month, year = self.ask_for_month_and_year()
+                add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year)
+                if not add:
+                    print("Month not found. If you would like to add a new month, insert 1. Else, insert 0.")
+                    command = self.ask_for_command()
+                    if command == "1":
+                        self.add_month(month, year)
+                        break
+                    elif command == "0":
+                        continue
+                break
+            self.log(add)
+
         if command == "2":
-            self.month_repo.create(Month(self.username, month, year, 0, 0, 0, 0, 0, 0))
-            add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year)
-            print(add)
-        elif command == "1":
-            add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year)
-            if not add:
-                print() # TODO wrong month
-        category = input("Category: ")
-        category = category.lower()
-        amount = input("Amount: ")
-        self.month_repo.spend(add, category, amount)
-        print(self.month_repo.find_by_username_and_month_and_year(self.username, month, year))
+            self.add_month(month, year)
+
+    def ask_for_month_and_year(self):
+        while True:
+            year = input("Year:")
+            month = input("Month (written):")
+            month = month[0].upper()+month[1:]
+            if not 1900 < int(year) < 2100:
+                print("Wrong year.")
+                continue
+            if not month in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]:
+                print("Wrong month.")
+                continue
+            break
+        return month, year
+
+    def add_month(self, month, year):
+        self.month_repo.create(Month(self.username, month, year, 0, 0, 0, 0, 0, 0))
+        add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year)
+        print("Month created:")
+        print(add)
+
+    def log(self, month=Month):
+        while True:
+            print("Choose one of the following categories:")
+            print(f"food, living, hobbies, transportation, culture, other")
+            category = input("Category: ")
+            category = category.lower() 
+            if category not in ["food", "living", "hobbies", "transportation", "culture", "other"]:
+                print("Wrong category.")
+                continue
+            break
+        while True:
+            b = True
+            amount = input("Amount: ")
+            for number in amount:
+                if number not in "1234567890":
+                    print("Wrong amount.")
+                    b = False
+            if not b:
+                continue
+            break
+        self.month_repo.spend(month, category, amount)
+        print()
+        print("All done!")
+        print()
+        print(self.month_repo.find_by_username_and_month_and_year(self.username, month.month, month.year))
+
+# TODO view previous months, fix logging in loops
 
 if __name__ == "__main__":
     ta = TrackApp()
