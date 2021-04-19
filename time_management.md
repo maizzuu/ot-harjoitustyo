@@ -10,4 +10,5 @@ date | hours | what i did
 13.4. | 4 | creating text UI, logging in, tests
 15.4 | 3.5 | creating tests, updating index.py
 16.4. | 3 | updating index.py
-= | 18.5 | 
+19.4. | 5 | pylint, adding functionalities
+= | 23.5 | 
