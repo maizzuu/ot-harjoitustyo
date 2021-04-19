@@ -1,5 +1,6 @@
 from database_connection import get_database_connection
 
+
 def drop_tables(connection):
     cursor = connection.cursor()
 
@@ -9,7 +10,7 @@ def drop_tables(connection):
 
     cursor.execute('''
         drop table if exists months;
-    ''')    
+    ''')
 
     connection.commit()
 

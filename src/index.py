@@ -4,8 +4,9 @@ from entities.user import User
 from entities.month import Month
 from months_list import months
 
-login_commands = {"0": "exit", "1": "log in", "2": "create account"}
-commands = {"0": "exit", "1": "log expenses", "2": "view previous spending"}
+LOGIN_COMMANDS = {"0": "exit", "1": "log in", "2": "create account"}
+COMMANDS = {"0": "exit", "1": "log expenses", "2": "view previous spending"}
+
 
 class TrackApp:
     def __init__(self):
@@ -23,25 +24,25 @@ class TrackApp:
             if login_return:
                 break
 
-        self.instructions()
         while True:
+            self.instructions()
             if not self.read_commands():
                 return
 
     def read_commands(self):
         command = self.ask_for_command()
-        if command not in commands:
+        if command not in COMMANDS:
             print("Unknown command")
             self.instructions()
-        elif command == "0":
+            return True
+        if command == "0":
             return False
-        elif command == "1": # log spending
+        if command == "1":  # log spending
             self.log_expenses()
-            return
-        elif command == "2":
-            # TODO view spending
-            return
-
+            return True
+        if command == "2":
+            self.view()
+            return True
 
     def ask_for_command(self):
         return input("command:")
@@ -49,11 +50,11 @@ class TrackApp:
     def login(self):
         command = self.ask_for_command()
 
-        if command not in login_commands:
+        if command not in LOGIN_COMMANDS:
             print("Unknown command, try again")
             return False
 
-        if command == "1": # log in
+        if command == "1":  # log in
             username = input("username:")
             user = self.user_repo.find_by_username(username)
             if user is None:
@@ -65,18 +66,18 @@ class TrackApp:
                 print("Wrong password")
                 return False
 
-        elif command == "2": # create account
+        elif command == "2":  # create account
             while True:
                 print("Username must contain at least 4 characters.")
-                print("The username can consist of letters a-z uppercase and lowercase and numbers 0-9.") # pylint: disable=line-too-long
+                print("The username can consist of letters a-z uppercase and lowercase and numbers 0-9.")  # pylint: disable=line-too-long
                 username = input("username:")
                 if self.check_username(username):
                     break
                 print("Username does not meet the requirements")
 
             while True:
-                print("Password must contain at least 4 characters, at least one of which must be a number.") # pylint: disable=line-too-long
-                print("The password can consist of letters a-z (uppercase and lowercase) and numbers 0-9.") # pylint: disable=line-too-long
+                print("Password must contain at least 4 characters, at least one of which must be a number.")  # pylint: disable=line-too-long
+                print("The password can consist of letters a-z (uppercase and lowercase) and numbers 0-9.")  # pylint: disable=line-too-long
                 password = input("password:")
                 if self.check_password(password):
                     break
@@ -102,7 +103,7 @@ class TrackApp:
         print("To view previous months' expenses, insert 2")
 
     def check_username(self, name):
-        if len(name)<4:
+        if len(name) < 4:
             return False
         for character in name:
             if character not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ":
@@ -111,7 +112,7 @@ class TrackApp:
         return True
 
     def check_password(self, password):
-        if len(password)<4:
+        if len(password) < 4:
             return False
         num = False
         for character in password:
@@ -125,27 +126,31 @@ class TrackApp:
         return True
 
     def log_expenses(self):
-        print("Log expenses:")
+        print()
+        print("Log expenses")
+        print()
         while True:
             print("To log to a preexisting month, insert 1")
             print("To add new month, insert 2")
             command = self.ask_for_command()
             if command == "1":
                 break
-            elif command == "2":
+            if command == "2":
                 break
             print("Wrong command.")
 
         if command == "1":
             while True:
                 month, year = self.ask_for_month_and_year()
-                add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year) # pylint: disable=line-too-long
+                add = self.month_repo.find_by_username_month_year(
+                    self.username, month, year)
                 if not add:
                     print("Month not found.")
-                    print("If you would like to add a new month, insert 1. Else, insert 0.") # pylint: disable=line-too-long
+                    print(
+                        "If you would like to add a new month, insert 1. Else, insert 0.")
                     command = self.ask_for_command()
                     if command == "1":
-                        self.add_month(month, year)
+                        add = self.add_month(month, year)
                         break
                     if command == "0":
                         continue
@@ -163,7 +168,7 @@ class TrackApp:
             if not 1900 < int(year) < 2100:
                 print("Wrong year.")
                 continue
-            
+
             if not month in months:
                 print("Wrong month.")
                 continue
@@ -171,10 +176,14 @@ class TrackApp:
         return month, year
 
     def add_month(self, month, year):
-        self.month_repo.create(Month(self.username, month, year, 0, 0, 0, 0, 0, 0))
-        add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year)
+        self.month_repo.create(
+            Month(self.username, month, year, 0, 0, 0, 0, 0, 0))
+        add = self.month_repo.find_by_username_month_year(
+            self.username, month, year)
         print("Month created:")
+        print()
         print(add)
+        return add
 
     def log(self, month=Month):
         while True:
@@ -200,10 +209,29 @@ class TrackApp:
         print()
         print("All done!")
         print()
-        print(self.month_repo.find_by_username_and_month_and_year(self.username, month.month, month.year))
+        month = self.month_repo.find_by_username_month_year(
+            self.username, month.month, month.year)
+        print(month)
+        self.total_sum(month)
 
-# TODO view previous months, fix logging in loops
+    def view(self):
+        print()
+        print("View previous spending")
+        print()
+        month, year = self.ask_for_month_and_year()
+        viewed = self.month_repo.find_by_username_month_year(
+            self.username, month, year)
+        print(viewed)
+        self.total_sum(viewed)
+
+    def total_sum(self, month=Month):
+        total = (month.food + month.living + month.hobbies
+                 + month.transportation + month.culture + month.other)
+        print()
+        print(f"Total spending: {total}")
+        print()
+
 
 if __name__ == "__main__":
-    ta = TrackApp()
-    ta.start()
+    TA = TrackApp()
+    TA.start()

@@ -9,9 +9,20 @@ class Month:
         self.transportation = transportation
         self.culture = culture
         self.other = other
-        
+
     def __str__(self):
         if self.username[-1] == "s":
-            return f"{self.username}' {self.month}, {self.year}\nFood: {self.food}\nLiving: {self.living}\nHobbies: {self.hobbies}\nTransportation: {self.transportation}\nCulture: {self.culture}\nOther: {self.other}"
-        else:
-            return f"{self.username}'s {self.month}, {self.year}\nFood: {self.food}\nLiving: {self.living}\nHobbies: {self.hobbies}\nTransportation: {self.transportation}\nCulture: {self.culture}\nOther: {self.other}" 
+            return f"""{self.username}' {self.month}, {self.year}\n
+                    Food: {self.food}\n
+                    Living: {self.living}\n
+                    Hobbies: {self.hobbies}\n
+                    Transportation: {self.transportation}\n
+                    Culture: {self.culture}\n
+                    Other: {self.other}"""
+        return f"""{self.username}'s {self.month}, {self.year}\n
+                Food: {self.food}\n
+                Living: {self.living}\n
+                Hobbies: {self.hobbies}\n
+                Transportation: {self.transportation}\n
+                Culture: {self.culture}\n
+                Other: {self.other}"""

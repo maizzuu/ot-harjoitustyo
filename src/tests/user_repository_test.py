@@ -2,6 +2,7 @@ import unittest
 from entities.user import User
 from repositories.user_repository import user_repository
 
+
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
         user_repository.delete_all()
