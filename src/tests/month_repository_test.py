@@ -1,7 +1,7 @@
 import unittest
-from copies.user_copy import User
-from copies.month_copy import Month
-from copies.month_repository_copy import month_repository
+from entities.user import User
+from entities.month import Month
+from repositories.month_repository import month_repository
 
 class TestMonthRepository(unittest.TestCase):
     def setUp(self):

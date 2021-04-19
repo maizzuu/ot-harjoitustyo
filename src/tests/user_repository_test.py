@@ -1,6 +1,6 @@
 import unittest
-from copies.user_copy import User
-from copies.user_repository_copy import user_repository
+from entities.user import User
+from repositories.user_repository import user_repository
 
 class TestUserRepository(unittest.TestCase):
     def setUp(self):

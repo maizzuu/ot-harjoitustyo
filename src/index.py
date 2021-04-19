@@ -1,7 +1,8 @@
 from repositories.user_repository import user_repository
 from repositories.month_repository import month_repository
-from copies.user_copy import User
-from copies.month_copy import Month
+from entities.user import User
+from entities.month import Month
+from months_list import months
 
 login_commands = {"0": "exit", "1": "log in", "2": "create account"}
 commands = {"0": "exit", "1": "log expenses", "2": "view previous spending"}
@@ -36,6 +37,7 @@ class TrackApp:
             return False
         elif command == "1": # log spending
             self.log_expenses()
+            return
         elif command == "2":
             # TODO view spending
             return
@@ -161,7 +163,8 @@ class TrackApp:
             if not 1900 < int(year) < 2100:
                 print("Wrong year.")
                 continue
-            if not month in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]:
+            
+            if not month in months:
                 print("Wrong month.")
                 continue
             break
