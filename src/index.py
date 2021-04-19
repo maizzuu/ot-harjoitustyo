@@ -5,7 +5,7 @@ from copies.month_copy import Month
 
 login_commands = {"0": "exit", "1": "log in", "2": "create account"}
 commands = {"0": "exit", "1": "log expenses", "2": "view previous spending"}
-        
+
 class TrackApp:
     def __init__(self):
         self.user_repo = user_repository
@@ -16,16 +16,16 @@ class TrackApp:
         print("TrackApp")
         while True:
             self.login_instructions()
-            l = self.login()
-            if l == "EXIT":
+            login_return = self.login()
+            if login_return == "EXIT":
                 return
-            elif l:
+            if login_return:
                 break
 
         self.instructions()
         while True:
             if not self.read_commands():
-                return 
+                return
 
     def read_commands(self):
         command = self.ask_for_command()
@@ -38,7 +38,7 @@ class TrackApp:
             self.log_expenses()
         elif command == "2":
             # TODO view spending
-            pass
+            return
 
 
     def ask_for_command(self):
@@ -53,33 +53,35 @@ class TrackApp:
 
         if command == "1": # log in
             username = input("username:")
-            u = self.user_repo.find_by_username(username)
-            if u is None:
+            user = self.user_repo.find_by_username(username)
+            if user is None:
                 print("User does not exist")
                 return False
-            
+
             password = input("password:")
-            if password != u.password:
+            if password != user.password:
                 print("Wrong password")
                 return False
 
         elif command == "2": # create account
             while True:
-                print("Username must contain at least 4 characters. The username can consist of letters a-z (uppercase and lowercase) and numbers 0-9.")
+                print("Username must contain at least 4 characters.")
+                print("The username can consist of letters a-z uppercase and lowercase and numbers 0-9.") # pylint: disable=line-too-long
                 username = input("username:")
                 if self.check_username(username):
                     break
                 print("Username does not meet the requirements")
 
             while True:
-                print("Password must contain at least 4 characters, at least one of which must be a number. The password can consist of letters a-z (uppercase and lowercase) and numbers 0-9.")
+                print("Password must contain at least 4 characters, at least one of which must be a number.") # pylint: disable=line-too-long
+                print("The password can consist of letters a-z (uppercase and lowercase) and numbers 0-9.") # pylint: disable=line-too-long
                 password = input("password:")
                 if self.check_password(password):
                     break
                 print("Password does not meet the requirements")
 
             self.user_repo.create(User(username, password))
-        
+
         elif command == "0":
             return "EXIT"
 
@@ -100,7 +102,7 @@ class TrackApp:
     def check_username(self, name):
         if len(name)<4:
             return False
-        for character in name: 
+        for character in name:
             if character not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ":
                 if character not in "0123456789":
                     return False
@@ -130,20 +132,20 @@ class TrackApp:
                 break
             elif command == "2":
                 break
-            else:
-                print("Wrong command.")
+            print("Wrong command.")
 
         if command == "1":
             while True:
                 month, year = self.ask_for_month_and_year()
-                add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year)
+                add = self.month_repo.find_by_username_and_month_and_year(self.username, month, year) # pylint: disable=line-too-long
                 if not add:
-                    print("Month not found. If you would like to add a new month, insert 1. Else, insert 0.")
+                    print("Month not found.")
+                    print("If you would like to add a new month, insert 1. Else, insert 0.") # pylint: disable=line-too-long
                     command = self.ask_for_command()
                     if command == "1":
                         self.add_month(month, year)
                         break
-                    elif command == "0":
+                    if command == "0":
                         continue
                 break
             self.log(add)
@@ -174,21 +176,21 @@ class TrackApp:
     def log(self, month=Month):
         while True:
             print("Choose one of the following categories:")
-            print(f"food, living, hobbies, transportation, culture, other")
+            print("food, living, hobbies, transportation, culture, other")
             category = input("Category: ")
-            category = category.lower() 
+            category = category.lower()
             if category not in ["food", "living", "hobbies", "transportation", "culture", "other"]:
                 print("Wrong category.")
                 continue
             break
         while True:
-            b = True
+            all_numbers = True
             amount = input("Amount: ")
             for number in amount:
                 if number not in "1234567890":
                     print("Wrong amount.")
-                    b = False
-            if not b:
+                    all_numbers = False
+            if not all_numbers:
                 continue
             break
         self.month_repo.spend(month, category, amount)
