@@ -23,3 +23,7 @@ def format_code(ctx):
 @task
 def lint(ctx):
     ctx.run("pylint src")
+
+@task
+def initialize(ctx):
+    ctx.run("python3 src/initialize_database.py")
