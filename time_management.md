@@ -11,4 +11,5 @@ date | hours | what i did
 15.4 | 3.5 | creating tests, updating index.py
 16.4. | 3 | updating index.py
 19.4. | 5 | pylint, adding functionalities
-= | 23.5 | 
+20.4. | 1 | class diagram, updated readme
+= | 24.5 | 
