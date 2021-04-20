@@ -23,3 +23,15 @@ Ohjelman voi käynnistää komentoriviltä komennolla:
   
 ` poetry run invoke start `
 
+Testit voi suorittaa komennolla:  
+` poetry run invoke test `
+  
+Testikattavuusraportin voi luoda komennolla:  
+  
+` poetry run invoke coverage-report `
+  
+Pylint-tarkastukset voi suorittaa komennolla:  
+  
+` poetry run invoke lint `
+
+   
