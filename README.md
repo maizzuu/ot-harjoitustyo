@@ -9,10 +9,17 @@
 - [Arkkitehtuuri](https://github.com/maizzuu/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 ### Asennus
-Asenna alkuun riippuvuudet komennolla  
+Asenna alkuun riippuvuudet komennolla:
+  
 ` poetry install `
+
+Alusta tietokannat komennolla:  
+  
+` poetry run invoke initialize `
 
 ### Komennot
 
-Ohjelman voi käynnistää komentoriviltä komennolla  
+Ohjelman voi käynnistää komentoriviltä komennolla:  
+  
 ` poetry run invoke start `
+
