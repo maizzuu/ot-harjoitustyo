@@ -17,5 +17,5 @@ Application can be used to log ones incomes and expenses to track monthly spendi
   - transportation
   - restaurants and culture
   - other
-
+- If the user tries to log expenses for a month that hasn't yet been created, can the user then add that month. [x] tehty
 
