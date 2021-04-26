@@ -10,7 +10,7 @@ Application can be used to log ones incomes and expenses to track monthly spendi
 - After logging in the user can choose from several different functions. [x]
   - The user can log expenses or incomes.
   - The user can look up the total spending for a certain month.
-- Expenses are logged by the following categories: [x]
+- Expenses are logged by the following categories: [x] tehty
   - food and other essentials
   - living
   - hobbies
