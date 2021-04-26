@@ -3,7 +3,6 @@ from entities.month import Month
 def print_month(month=Month):
     total = (month.food + month.living + month.hobbies
                  + month.transportation + month.culture + month.other)
-    length = len(f"{month.username}'s {month.month} of {month.year}")
     if month.username[-1] == "s":
         print(f"""
         {month.username}' {month.month} of {month.year}

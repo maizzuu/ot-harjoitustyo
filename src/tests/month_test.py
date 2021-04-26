@@ -15,4 +15,3 @@ class TestMonth(unittest.TestCase):
         self.assertEqual(self.month.transportation, 0)
         self.assertEqual(self.month.culture, 0)
         self.assertEqual(self.month.other, 0)
-
