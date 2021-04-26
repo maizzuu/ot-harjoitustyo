@@ -32,7 +32,3 @@ def print_month(month=Month):
         Total spending: {total}
 
         """)
-
-if __name__ == "__main__":
-    m = Month('Daniel', 'June', '2011', 0, 0, 0, 0, 0, 0)
-    print_month(m)
