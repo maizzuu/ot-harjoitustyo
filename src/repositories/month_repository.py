@@ -29,7 +29,7 @@ class MonthRepository:
 
         return list(map(get_month_by_row, rows))
 
-    def find_by_username(self, username):
+    def find_by_username(self, username:str):
         cursor = self._connection.cursor()
 
         cursor.execute('select * from months where username = ?', (username,))
@@ -38,7 +38,7 @@ class MonthRepository:
 
         return list(map(get_month_by_row, rows))
 
-    def find_by_username_month_year(self, username, month, year):
+    def find_by_username_month_year(self, username:str, month:str, year:str):
         cursor = self._connection.cursor()
 
         sql = 'select * from months where username = ? and month = ? and year = ?'
@@ -48,7 +48,7 @@ class MonthRepository:
 
         return get_month_by_row(row)
 
-    def create(self, month):
+    def create(self, month:Month):
         cursor = self._connection.cursor()
 
         sql = '''insert into months (username, month, year, food, living,
@@ -73,7 +73,7 @@ class MonthRepository:
 
         return month
 
-    def spend(self, month, category, amount):
+    def spend(self, month:Month, category:str, amount:str):
         cursor = self._connection.cursor()
 
         if category == "food":

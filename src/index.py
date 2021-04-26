@@ -3,6 +3,7 @@ from repositories.month_repository import month_repository
 from entities.user import User
 from entities.month import Month
 from months_list import months
+from print_month import print_month
 
 LOGIN_COMMANDS = {"0": "exit", "1": "log in", "2": "create account"}
 COMMANDS = {"0": "exit", "1": "log expenses", "2": "view previous spending"}
@@ -158,6 +159,7 @@ class TrackApp:
             self.log(add)
 
         if command == "2":
+            month, year = self.ask_for_month_and_year()
             self.add_month(month, year)
 
     def ask_for_month_and_year(self):
@@ -165,6 +167,9 @@ class TrackApp:
             year = input("Year:")
             month = input("Month (written):")
             month = month[0].upper()+month[1:]
+            for number in year:
+                if number not in "0123456789":
+                    print("Invalid year.")
             if not 1900 < int(year) < 2100:
                 print("Wrong year.")
                 continue
@@ -182,7 +187,7 @@ class TrackApp:
             self.username, month, year)
         print("Month created:")
         print()
-        print(add)
+        print_month(add)
         return add
 
     def log(self, month=Month):
@@ -211,25 +216,27 @@ class TrackApp:
         print()
         month = self.month_repo.find_by_username_month_year(
             self.username, month.month, month.year)
-        print(month)
-        self.total_sum(month)
+        print_month(month)
 
     def view(self):
         print()
         print("View previous spending")
         print()
-        month, year = self.ask_for_month_and_year()
-        viewed = self.month_repo.find_by_username_month_year(
-            self.username, month, year)
-        print(viewed)
-        self.total_sum(viewed)
+        while True:
+            print("Insert 1 to search and 0 to quit")
+            command = self.ask_for_command()
+            if command == "0":
+                break
+            month, year = self.ask_for_month_and_year()
+            viewed = self.month_repo.find_by_username_month_year(
+                self.username, month, year)
+            if not viewed:
+                print("Month not found.")
+        if command == "1":
+            print_month(viewed)
+        else:
+            return
 
-    def total_sum(self, month=Month):
-        total = (month.food + month.living + month.hobbies
-                 + month.transportation + month.culture + month.other)
-        print()
-        print(f"Total spending: {total}")
-        print()
 
 
 if __name__ == "__main__":
