@@ -8,6 +8,10 @@
 
 - [Arkkitehtuuri](https://github.com/maizzuu/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+### Release  
+  
+- Release(https://github.com/maizzuu/ot-harjoitustyo/releases/tag/viikko5)
+
 ### Asennus
 Asenna alkuun riippuvuudet komennolla:
   
