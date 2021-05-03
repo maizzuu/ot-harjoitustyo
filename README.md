@@ -19,7 +19,7 @@ Asenna alkuun riippuvuudet komennolla:
 
 Alusta tietokannat komennolla:  
   
-` poetry run invoke initialize `
+` poetry run invoke build `
 
 ### Komennot
 
