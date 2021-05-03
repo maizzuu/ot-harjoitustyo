@@ -25,5 +25,5 @@ def lint(ctx):
     ctx.run("pylint src")
 
 @task
-def initialize(ctx):
-    ctx.run("python3 src/initialize_database.py")
+def build(ctx):
+    ctx.run("python3 src/build.py")
