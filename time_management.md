@@ -12,4 +12,6 @@ date | hours | what i did
 16.4. | 3 | updating index.py
 19.4. | 5 | pylint, adding functionalities
 20.4. | 1 | class diagram, updated readme
-= | 24.5 | 
+25.4. | 4 | fixing and adding tests, other updates
+26.4. | 2 | editing month.py, github release
+= | 30.5 | 
