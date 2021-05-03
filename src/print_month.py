@@ -14,7 +14,7 @@ def print_month(month=Month):
         Culture: {month.transportation}
         Other: {month.other}
 
-        Total spending: {total}
+        Total spending: {total}€
 
         """)
     else:
@@ -28,6 +28,6 @@ def print_month(month=Month):
         Culture: {month.transportation}
         Other: {month.other}
 
-        Total spending: {total}
+        Total spending: {total}€
 
         """)

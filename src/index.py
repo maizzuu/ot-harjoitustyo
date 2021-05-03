@@ -16,7 +16,9 @@ class TrackApp:
         self.username = None
 
     def start(self):
-        print("TrackApp")
+        print()
+        print("Welcome to TrackApp!")
+        print()
         while True:
             self.login_instructions()
             login_return = self.login()
@@ -41,7 +43,7 @@ class TrackApp:
         if command == "1":  # log spending
             self.log_expenses()
             return True
-        if command == "2":
+        if command == "2": # view
             self.view()
             return True
 
@@ -89,7 +91,10 @@ class TrackApp:
         elif command == "0":
             return "EXIT"
 
-        print("Login succesfull")
+        print()
+        print("Login successful!")
+        print(f"You are logged in as {username}")
+        print()
         self.username = username
         return True
 
@@ -140,7 +145,7 @@ class TrackApp:
                 break
             print("Wrong command.")
 
-        if command == "1":
+        if command == "1": # log
             while True:
                 month, year = self.ask_for_month_and_year()
                 add = self.month_repo.find_by_username_month_year(
@@ -158,9 +163,16 @@ class TrackApp:
                 break
             self.log(add)
 
-        if command == "2":
+        if command == "2": # add
             month, year = self.ask_for_month_and_year()
-            self.add_month(month, year)
+            added_month = self.add_month(month, year)
+            print("If you would like to log expenses for this month, insert 1")
+            print("Else, insert 0")
+            com = self.ask_for_command()
+            print()
+            if com  == "1":
+                self.log(added_month)
+            return
 
     def ask_for_month_and_year(self):
         while True:
@@ -217,6 +229,11 @@ class TrackApp:
         month = self.month_repo.find_by_username_month_year(
             self.username, month.month, month.year)
         print_month(month)
+        print("If you would like to log more expenses for this month, insert 1")
+        print("Else, insert 0")
+        com = self.ask_for_command()
+        if com == "1":
+            self.log(month)
 
     def view(self):
         print()
