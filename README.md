@@ -1,4 +1,6 @@
 # TrackApp
+### Tämän hetkinen tilanne
+Tekstikäyttöliittymässä on kaikki toiminnallisuudet käytössä. Graafinen käyttöliittymä ei ole vielä käyttökunnossa, mutta tulossa!
 
 ### Dokumentaatio
 
@@ -10,7 +12,7 @@
 
 ### Release  
   
-- Release(https://github.com/maizzuu/ot-harjoitustyo/releases/tag/viikko5)
+- [Release](https://github.com/maizzuu/ot-harjoitustyo/releases/tag/viikko5)
 
 ### Asennus
 Asenna alkuun riippuvuudet komennolla:
