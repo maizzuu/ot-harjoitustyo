@@ -46,3 +46,27 @@ class AppService:
         self._user = user
 
         return user
+
+    def current_user(self):
+        """Return the current user.
+
+        Returns:
+            User: The current user.
+        """
+        return self._user
+
+    def get_months(self):
+        """Returns a list of months that belong to the current user.
+            If there isn't a current user, returns an empty list.
+
+        Returns:
+            list: Months that belong to the current user.
+        """
+        if not self._user:
+            return []
+
+        months = self._month_repo.find_by_username(self._user.username)
+
+        return months
+
+app_service = AppService()
