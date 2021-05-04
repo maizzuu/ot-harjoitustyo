@@ -1,9 +1,10 @@
 from tkinter import ttk, constants, StringVar
-from services.app_service import AppService, InvalidInputError
+from services.app_service import app_service, InvalidInputError
 
 class LoginUI:
-    def __init__(self, root):
+    def __init__(self, root, handle_login):
         self._root = root
+        self._handle_login = handle_login
         self._frame = None
         self._username_entry = None
         self._password_entry = None
@@ -23,13 +24,17 @@ class LoginUI:
         password = self._password_entry.get()
 
         try:
-            AppService.login(username, password)
+            app_service.login(username, password)
+            self._handle_login()
         except InvalidInputError:
             self._show_error("Invalid username or password")
 
     def _show_error(self, message):
         self._error_variable.set(message)
         self._error_label.grid()
+
+    def _hide_error(self):
+        self._error_label.grid_remove()
 
     def _initialize_username_and_password(self):
 
@@ -39,16 +44,11 @@ class LoginUI:
         password_label = ttk.Label(master=self._frame, text="Password")
         self._password_entry = ttk.Entry(master=self._frame)
 
-        button = ttk.Button(master=self._frame, text="Login")
+        username_label.grid(padx=5, pady=5, sticky=constants.W)
+        self._username_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
-        username_label.grid(row=2, column=1)
-        self._username_entry.grid(row=2, column=2)
-
-        password_label.grid(row=3, column=1)
-        self._password_entry.grid(row=3, column=2)
-
-        button.grid(row=4, column=1, columnspan=2)
-
+        password_label.grid(padx=5, pady=5, sticky=constants.W)
+        self._password_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -56,14 +56,22 @@ class LoginUI:
         self._error_variable = StringVar(self._frame)
 
         self._error_label = ttk.Label(
-            master=self._frame, 
-            textvariable=self._error_variable, 
+            master=self._frame,
+            textvariable=self._error_variable,
             foreground='red'
         )
 
+        self._error_label.grid(padx=5, pady=5)
+
         login_label = ttk.Label(master=self._frame, text="Login")
-        login_label.grid(row=0, column=1)
+        login_label.grid(padx=5, pady=5, sticky=constants.N)
 
         self._initialize_username_and_password()
 
         login_button = ttk.Button(master=self._frame, text="Login", command=self._login_handler)
+
+        self._frame.grid_columnconfigure(0, weight=1, minsize=400)
+
+        login_button.grid(padx=5, pady=5, sticky=constants.S)
+
+        self._hide_error()
