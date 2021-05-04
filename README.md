@@ -10,9 +10,9 @@ Tekstikäyttöliittymässä on kaikki toiminnallisuudet käytössä. Graafinen k
 
 - [Arkkitehtuuri](https://github.com/maizzuu/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
-### Release  
+### Uusin release  
   
-- [Release](https://github.com/maizzuu/ot-harjoitustyo/releases/tag/viikko5)
+- [Release](https://github.com/maizzuu/ot-harjoitustyo/releases/tag/viikko6)
 
 ### Asennus
 Asenna alkuun riippuvuudet komennolla:
