@@ -1,6 +1,6 @@
 # TrackApp
 ### Tämän hetkinen tilanne
-Tekstikäyttöliittymässä on kaikki toiminnallisuudet käytössä. Graafinen käyttöliittymä ei ole vielä käyttökunnossa, mutta tulossa!
+Tekstikäyttöliittymässä on kaikki toiminnallisuudet käytössä. Graafinen käyttöliittymä ei ole vielä käyttökunnossa, mutta tulossa! Testit eivät myöskään vielä testaa services-hakemiston sovelluslogiikkaa.
 
 ### Dokumentaatio
 
