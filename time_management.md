@@ -14,4 +14,5 @@ date | hours | what i did
 20.4. | 1 | class diagram, updated readme
 25.4. | 4 | fixing and adding tests, other updates
 26.4. | 2 | editing month.py, github release
-= | 30.5 | 
+3.5. | 4 | starting graphic ui, docstring
+= | 34.5 | 
