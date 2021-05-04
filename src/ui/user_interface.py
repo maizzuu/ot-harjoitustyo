@@ -7,8 +7,20 @@ class UI:
         self._current_view = None
 
     def start(self):
+        self._show_login()
+
+    def _hide_current_view(self):
+        if self._current_view:
+            self._current_view.destroy()
+
+        self._current_view = None
+
+    def _show_login(self):
+        self._hide_current_view()
+
         label = ttk.Label(master=self._root, text="Welcome to TrackApp!")
-        
-        self._current_view = LoginUI(self._root)
-        self._current_view.pack()
         label.pack()
+    
+        self._current_view = LoginUI(self._root)
+
+        self._current_view.pack()
