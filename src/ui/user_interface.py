@@ -19,9 +19,6 @@ class UI:
     def _show_login(self):
         self._hide_current_view()
 
-        label = ttk.Label(master=self._root, text="Welcome to TrackApp!")
-        label.pack()
-
         self._current_view = LoginUI(self._root, self._show_months)
 
         self._current_view.pack()
@@ -29,6 +26,6 @@ class UI:
     def _show_months(self):
         self._hide_current_view()
 
-        self._current_view = MonthUI(self._root)
+        self._current_view = MonthUI(self._root, self._show_login)
 
         self._current_view.pack()
