@@ -47,6 +47,12 @@ class AppService:
 
         return user
 
+    def logout(self):
+        """ Method used to log out of the app.
+        """
+
+        self._user = None
+
     def current_user(self):
         """Return the current user.
 
@@ -68,5 +74,29 @@ class AppService:
         months = self._month_repo.find_by_username(self._user.username)
 
         return months
+
+    def log(self, month:str, year:str, category:str, amount:int):
+        """Logs expenses for a certain month, 
+        if the month doesn't exist, 
+        it will create the new month.
+
+        Args:
+            month (str): month
+            year (str): year
+            category (str): category of the spending
+            amount (int): amount spent
+
+        Returns:
+            Month: The month in question.
+        """
+        month = month[0].upper()+month[1:]
+        category = category.lower()
+        log_month = self._month_repo.find_by_username_month_year(self._user.username, month, year)
+
+        if not log_month:
+            log_month = Month(self._user.username, month, year, 0, 0, 0, 0, 0, 0)
+            self._month_repo.create(log_month)
+
+        return self._month_repo.spend(log_month, category, amount)
 
 app_service = AppService()
