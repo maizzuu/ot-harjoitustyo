@@ -41,7 +41,7 @@ class UserRepository:
 
         self._connection.commit()
 
-        return True
+        return user
 
     def delete_all(self):
         cursor = self._connection.cursor()
