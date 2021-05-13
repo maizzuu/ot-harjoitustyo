@@ -5,8 +5,6 @@ Application can be used to log ones incomes and expenses to track monthly spendi
   
 ## Functionality  
 - Logging in as user [x]
-  - Username must contain at least 4 characters. The username can consist of letters a-z (uppercase and lowercase) and numbers 0-9.
-  - Password must contain at least 4 characters, at least one of which must be a number. The password can consist of letters a-z (uppercase and lowercase) and numbers 0-9.
 - After logging in the user can choose from several different functions. [x]
   - The user can log expenses or incomes.
   - The user can look up the total spending for a certain month.
@@ -20,5 +18,4 @@ Application can be used to log ones incomes and expenses to track monthly spendi
 - If the user tries to log expenses for a month that hasn't yet been created, can the user then add that month. [x] tehty
 
 ## Latter improvements  
-- Graphic user interface
 - Ability to check total spending for a certain time period
