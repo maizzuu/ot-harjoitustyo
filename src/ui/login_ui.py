@@ -2,9 +2,10 @@ from tkinter import ttk, constants, StringVar
 from services.app_service import app_service, InvalidInputError
 
 class LoginUI:
-    def __init__(self, root, handle_login):
+    def __init__(self, root, handle_login, handle_create_view):
         self._root = root
         self._handle_login = handle_login
+        self._handle_create_view = handle_create_view
         self._frame = None
         self._username_entry = None
         self._password_entry = None
@@ -70,8 +71,12 @@ class LoginUI:
 
         login_button = ttk.Button(master=self._frame, text="Login", command=self._login_handler)
 
+        create_button = ttk.Button(master=self._frame, text="Create", command=self._handle_create_view)
+
         self._frame.grid_columnconfigure(0, weight=1, minsize=400)
 
         login_button.grid(padx=5, pady=5, sticky=constants.S)
+
+        create_button.grid(padx=5, pady=5, sticky=constants.S)
 
         self._hide_error()
