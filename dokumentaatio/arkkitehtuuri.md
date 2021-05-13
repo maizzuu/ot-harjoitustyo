@@ -8,10 +8,9 @@ Koodin pakkausrakenne on seuraava:
 Sovelluksen looginen tietomalli koostuu luokista User ja Month. User kuvaa yksittäistä käyttäjää, Month käyttäjälle kuuluvaa kuukautta.  
   
 ![class_diagram](https://github.com/maizzuu/ot-harjoitustyo/blob/master/dokumentaatio/images/class_diagram.png)  
-Tällä hetkellä toiminnalliset ominaisuudet ovat tekstikäyttöliittymän yhteydessä src-hakemiston tiedostossa 
-[index.py](https://github.com/maizzuu/ot-harjoitustyo/blob/master/src/index.py)
-, mutta graafisen käyttöliittymän valmistuttua ne ovat services-hakemiston tiedostossa 
+Sovelluksen toiminnallisuuksista huolehtii tiedosto
 [app_service.py](https://github.com/maizzuu/ot-harjoitustyo/blob/master/src/services/app_service.py).
+Kaikille toiminnallisuuksille on omat metodinsa.
 
 ## Päätoiminnallisuudet
 Tällä hetkellä tekstikäyttöliittymässä menojen kirjaaminen näyttää seuraavalta sekvenssikaaviona:  
