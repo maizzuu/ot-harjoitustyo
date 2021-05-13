@@ -1,6 +1,8 @@
 # Käyttöohje
 ## Asentaminen
-todo
+Lataa uusin release, linkki siihen löytyy [README](https://github.com/maizzuu/ot-harjoitustyo/blob/master/README.md)
+:sta
+  
 ## Käynnistäminen
 Ensimmäisellä käyttökerralla asenna riippuvuudet komennolla  
   
@@ -14,10 +16,7 @@ Nyt ohjelman voi käynnistää komennolla
   
 `poetry run invoke start`  
 
-## Kirjautuminen (tekstikäyttöliittymä)
-Jos sinulla on jo käyttäjätunnus, syötä 1.  
-Seuraavana syötä käyttäjätunnuksesi ja paina enter. Sitten syötä salasana ja paina enter uudestaan.  
+## Kirjautuminen 
+Sovellus avaa ensimmäisenä kirjautumisikkunan. Alareunan kohdasta "Create" pääsee luomaan uuden käyttäjän.
   
-## Käyttäjän luominen (tekstikäyttöliittymä)
-Ohjelman käynnistyttyä, syötä 2.  
-Keksi itsellesi vaatimusten mukaiset käyttäjänimi ja salasana. 
+## Käyttäjän luominen 
