@@ -76,8 +76,8 @@ class AppService:
         return months
 
     def log(self, month:str, year:str, category:str, amount:int):
-        """Logs expenses for a certain month, 
-        if the month doesn't exist, 
+        """Logs expenses for a certain month,
+        if the month doesn't exist,
         it will create the new month.
 
         Args:
@@ -98,5 +98,31 @@ class AppService:
             self._month_repo.create(log_month)
 
         return self._month_repo.spend(log_month, category, amount)
+
+    def create(self, username, password, login=True):
+        """Creates a new user and logs them in if needed.
+
+        Args:
+            username (str): User's username
+            password (str): User's password
+            login (bool, optional): Tells whether the user will be logged in. Defaults to True.
+
+        Raises:
+            UsernameExistsError: Raised if the username already exists.
+
+        Returns:
+            User: The user that has just been created.
+        """
+        existing = self._user_repo.find_by_username(username)
+
+        if existing:
+            raise UsernameExistsError(f'Username {username} already exists')
+
+        user = self._user_repo.create(User(username, password))
+
+        if login:
+            self._user = user
+
+        return user
 
 app_service = AppService()
