@@ -31,7 +31,7 @@ class UserRepository:
 
         return get_user_by_row(row)
 
-    def create(self, user):
+    def create(self, user:User):
         cursor = self._connection.cursor()
 
         cursor.execute(
