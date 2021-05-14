@@ -17,6 +17,6 @@ Nyt ohjelman voi käynnistää komennolla
 `poetry run invoke start`  
 
 ## Kirjautuminen 
-Sovellus avaa ensimmäisenä kirjautumisikkunan. Alareunan kohdasta "Create" pääsee luomaan uuden käyttäjän.
+Sovellus avaa ensimmäisenä kirjautumisikkunan. 
   
 ## Käyttäjän luominen 
