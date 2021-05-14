@@ -101,7 +101,7 @@ class MonthRepository:
                     where username = ? and month = ? and year = ?'''
             cursor.execute(
                 sql, (amount, month.username, month.month, month.year))
-        else:
+        elif category == "other":
             sql = '''update months set other = other+ ?
                     where username = ? and month = ? and year = ?'''
             cursor.execute(
