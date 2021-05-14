@@ -75,18 +75,16 @@ class MonthUI:
         year = self._log_year_entry.get()
         category = self._log_category_entry.get()
         amount = self._log_amount_entry.get()
+        if len(amount)==0:
+            amount = 0
 
-        if month and year and category and amount:
+        if month and year:
             app_service.log(month, year, category, int(amount))
-            self._initialize_month_list()
             self._log_month_entry.delete(0, constants.END)
             self._log_year_entry.delete(0, constants.END)
             self._log_category_entry.delete(0, constants.END)
             self._log_amount_entry.delete(0, constants.END)
-            self._log_month_entry.insert(-1, "Month")
-            self._log_year_entry.insert(-1, "Year")
-            self._log_category_entry.insert(-1, "Category")
-            self._log_amount_entry.insert(-1, "Amount")
+            self._initialize_month_list()
 
     def _initialize_month_list(self):
         if self._month_list:
@@ -111,23 +109,27 @@ class MonthUI:
         self._month_list_frame.grid(row=1, column=0, columnspan=2, sticky=constants.EW)
 
         self._log_month_entry = ttk.Entry(master=self._frame)
-        self._log_month_entry.insert(-1, "Month")
+        log_month_label = ttk.Label(master=self._frame, text="Month")
 
         self._log_year_entry = ttk.Entry(master=self._frame)
-        self._log_year_entry.insert(-1, "Year")
+        log_year_label = ttk.Label(master=self._frame, text="Year")
 
         self._log_category_entry = ttk.Entry(master=self._frame)
-        self._log_category_entry.insert(-1, "Category")
+        log_category_label = ttk.Label(master=self._frame, text="Category")
 
         self._log_amount_entry = ttk.Entry(master=self._frame)
-        self._log_amount_entry.insert(-1, "Amount")
+        log_amount_label = ttk.Label(master=self._frame, text="Amount")
 
         log_button = ttk.Button(master=self._frame, text="Log", command=self._log_handler)
 
-        self._log_month_entry.grid(padx=5, pady=5)
-        self._log_year_entry.grid(padx=5, pady=5)
-        self._log_category_entry.grid(padx=5, pady=5)
-        self._log_amount_entry.grid(padx=5, pady=5)
+        log_month_label.grid(padx=5, pady=1)
+        self._log_month_entry.grid(padx=5, pady=1)
+        log_year_label.grid(padx=5, pady=1)
+        self._log_year_entry.grid(padx=5, pady=1)
+        log_category_label.grid(padx=5, pady=1)
+        self._log_category_entry.grid(padx=5, pady=1)
+        log_amount_label.grid(padx=5, pady=1)
+        self._log_amount_entry.grid(padx=5, pady=1)
 
         log_button.grid(padx=5, pady=5)
 
