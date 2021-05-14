@@ -1,7 +1,7 @@
 # TrackApp
 ### Dokumentaatio
 
-- [Työaikakirjanpito](https://github.com/maizzuu/ot-harjoitustyo/blob/master/time_management.md)
+- [Työaikakirjanpito](https://github.com/maizzuu/ot-harjoitustyo/blob/master/dokumentaatio/time_management.md)
   
 - [Määrittelydokumentti](https://github.com/maizzuu/ot-harjoitustyo/blob/master/dokumentaatio/requirements_specification.md) 
 
