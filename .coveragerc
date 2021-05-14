@@ -1,4 +1,4 @@
 [run]
 source = src
-omit = /Users/maijapajumaa1/Library/Caches/**,src/index.py,src/tests/**,src/months_list.py,src/print_month.py,src/ui/**,src/ui_index.py,src/services/**
+omit = /Users/maijapajumaa1/Library/Caches/**,src/**/__init__.py,src/tests/**,src/ui/**,src/index.py
 
