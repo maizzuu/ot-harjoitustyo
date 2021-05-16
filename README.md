@@ -9,7 +9,7 @@
 
 ### Uusin release  
   
-- [Release](https://github.com/maizzuu/ot-harjoitustyo/releases/tag/viikko6)
+- [Release](https://github.com/maizzuu/ot-harjoitustyo/releases/tag/Final)
 
 ### Asennus
 Asenna alkuun riippuvuudet komennolla:
